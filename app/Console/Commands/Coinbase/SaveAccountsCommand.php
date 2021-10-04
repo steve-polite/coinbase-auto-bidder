@@ -3,6 +3,7 @@
 namespace App\Console\Commands\Coinbase;
 
 use App\Models\Coinbase\Account;
+use App\Models\Coinbase\AccountMovement;
 use App\Services\CoinbaseApi\Accounts;
 use Illuminate\Console\Command;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -14,7 +15,7 @@ class SaveAccountsCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'coinbase:accounts:save';
+    protected $signature = 'coinbase:accounts:save {--history}';
 
     /**
      * The console command description.
@@ -47,6 +48,8 @@ class SaveAccountsCommand extends Command
         $accounts = $this->coinbase_accounts_api->listAccounts();
 
         foreach ($accounts as $account) {
+
+            // Get account information
             try {
                 $saved_account = Account::whereAccountId($account["id"])->firstOrFail();
                 $saved_account->balance = $account["balance"];
@@ -56,7 +59,7 @@ class SaveAccountsCommand extends Command
                 $saved_account->trading_enabled = $account["trading_enabled"];
                 $saved_account->save();
             } catch (ModelNotFoundException $e) {
-                Account::create([
+                $saved_account = Account::create([
                     'account_id' => $account["id"],
                     'currency' => $account["currency"],
                     'balance' => $account["balance"],
@@ -65,6 +68,34 @@ class SaveAccountsCommand extends Command
                     'profile_id' => $account["profile_id"],
                     'trading_enabled' => $account["trading_enabled"],
                 ]);
+            }
+
+            // Get account history (last 1000 items)
+            if ($this->option('history')) {
+                $account_history = $this->coinbase_accounts_api->getAccountHistory($saved_account->account_id);
+
+                if (!is_null($account_history)) {
+                    foreach ($account_history as $movement) {
+                        try {
+                            AccountMovement::whereId($movement["id"])->firstOrFail();
+                        } catch (ModelNotFoundException $e) {
+                            $movement_details = $movement["details"];
+                            AccountMovement::create([
+                                "id" => $movement["id"],
+                                "account_id" => $saved_account->account_id,
+                                "amount" => $movement["amount"],
+                                "balance" => $movement["balance"],
+                                "created_at" => $movement["created_at"],
+                                "type" => $movement["type"],
+                                "order_id" => $movement_details["order_id"] ?? null,
+                                "product_id" => $movement_details["product_id"] ?? null,
+                                "trade_id" => $movement_details["trade_id"] ?? null,
+                                "transfer_id" => $movement_details["transfer_id"] ?? null,
+                                "transfer_type" => $movement_details["transfer_type"] ?? null
+                            ]);
+                        }
+                    }
+                }
             }
         }
     }

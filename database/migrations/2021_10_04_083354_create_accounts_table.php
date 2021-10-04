@@ -14,7 +14,6 @@ class CreateAccountsTable extends Migration
     public function up()
     {
         Schema::create('accounts', function (Blueprint $table) {
-            $table->id();
             $table->uuid('account_id')->unique();
             $table->string('currency', 10);
             $table->double('balance', 20, 16);
@@ -22,7 +21,6 @@ class CreateAccountsTable extends Migration
             $table->double('available', 20, 16);
             $table->uuid('profile_id');
             $table->boolean('trading_enabled');
-            $table->timestamps();
         });
     }
 
