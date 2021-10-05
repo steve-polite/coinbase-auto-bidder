@@ -78,6 +78,7 @@ class SaveAccountsCommand extends Command
             // Get account history (last 1000 items)
             if ($this->option('history')) {
                 $this->line("Get " . $saved_account->currency . " account history...");
+
                 $account_history = $this->coinbase_accounts_api->getAccountHistory($saved_account->account_id);
 
                 if (!is_null($account_history)) {
@@ -106,11 +107,12 @@ class SaveAccountsCommand extends Command
             // Get account holds
             if ($this->option('holds')) {
                 $this->line("Get " . $saved_account->currency . " account holds...");
+
                 $account_holds = $this->coinbase_accounts_api->getAccountHolds($saved_account->account_id);
+
                 if (!is_null($account_holds)) {
                     AccountHold::whereAccountId($saved_account->account_id)->delete();
                     foreach ($account_holds as $account_hold) {
-                        dump($account_hold);
                         AccountHold::create([
                             'id' => $account_hold['id'],
                             'account_id' => $account_hold['account_id'],
