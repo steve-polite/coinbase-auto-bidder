@@ -76,9 +76,7 @@ class SaveAccountsCommand extends Command
 
                 if (!is_null($account_history)) {
                     foreach ($account_history as $movement) {
-                        try {
-                            AccountMovement::whereId($movement["id"])->firstOrFail();
-                        } catch (ModelNotFoundException $e) {
+                        if (!AccountMovement::whereId($movement["id"])->exists()) {
                             $movement_details = $movement["details"];
                             AccountMovement::create([
                                 "id" => $movement["id"],
