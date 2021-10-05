@@ -3,6 +3,7 @@
 namespace App\Console\Commands\Coinbase;
 
 use App\Models\Coinbase\Account;
+use App\Models\Coinbase\AccountHold;
 use App\Models\Coinbase\AccountMovement;
 use App\Services\CoinbaseApi\Accounts;
 use Illuminate\Console\Command;
@@ -47,6 +48,8 @@ class SaveAccountsCommand extends Command
     {
         $accounts = $this->coinbase_accounts_api->listAccounts();
 
+        $this->line(count($accounts) . " accounts found.\n");
+
         foreach ($accounts as $account) {
 
             // Get account information
@@ -70,8 +73,11 @@ class SaveAccountsCommand extends Command
                 ]);
             }
 
+            $this->line($saved_account->currency . " account data saved.");
+
             // Get account history (last 1000 items)
             if ($this->option('history')) {
+                $this->line("Get " . $saved_account->currency . " account history...");
                 $account_history = $this->coinbase_accounts_api->getAccountHistory($saved_account->account_id);
 
                 if (!is_null($account_history)) {
@@ -94,16 +100,31 @@ class SaveAccountsCommand extends Command
                         }
                     }
                 }
+                $this->line("Done.");
             }
 
             // Get account holds
             if ($this->option('holds')) {
+                $this->line("Get " . $saved_account->currency . " account holds...");
                 $account_holds = $this->coinbase_accounts_api->getAccountHolds($saved_account->account_id);
-
                 if (!is_null($account_holds)) {
-                    // TODO: save account holds
+                    AccountHold::whereAccountId($saved_account->account_id)->delete();
+                    foreach ($account_holds as $account_hold) {
+                        dump($account_hold);
+                        AccountHold::create([
+                            'id' => $account_hold['id'],
+                            'account_id' => $account_hold['account_id'],
+                            'created_at' => $account_hold['created_at'],
+                            'updated_at' => $account_hold['updated_at'],
+                            'amount' => $account_hold['amount'],
+                            'type' => $account_hold['type'],
+                            'ref' => $account_hold['ref'],
+                        ]);
+                    }
                 }
+                $this->line("Done.");
             }
+            $this->line("");
         }
     }
 }
