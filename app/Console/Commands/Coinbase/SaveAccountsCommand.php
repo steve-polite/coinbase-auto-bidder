@@ -15,7 +15,7 @@ class SaveAccountsCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'coinbase:accounts:save {--history}';
+    protected $signature = 'coinbase:accounts:save {--history} {--holds}';
 
     /**
      * The console command description.
@@ -93,6 +93,15 @@ class SaveAccountsCommand extends Command
                             ]);
                         }
                     }
+                }
+            }
+
+            // Get account holds
+            if ($this->option('holds')) {
+                $account_holds = $this->coinbase_accounts_api->getAccountHolds($saved_account->account_id);
+
+                if (!is_null($account_holds)) {
+                    // TODO: save account holds
                 }
             }
         }

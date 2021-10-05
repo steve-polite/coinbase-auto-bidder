@@ -55,4 +55,20 @@ class Accounts
 
         return null;
     }
+
+    /**
+     * Docs: https://docs.pro.coinbase.com/?php#get-holds
+     */
+    public function getAccountHolds(string $account_id): ?array
+    {
+        $endpoint = '/accounts//' . $account_id . '/holds';
+        $response = Http::withHeaders($this->coinbaseHeaders($endpoint, '', 'GET'))
+            ->get(config('coinbase.api.base_url') . $endpoint);
+
+        if ($response->ok()) {
+            return $response->json();
+        }
+
+        return null;
+    }
 }
