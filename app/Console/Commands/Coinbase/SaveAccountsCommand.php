@@ -62,15 +62,7 @@ class SaveAccountsCommand extends Command
                 $saved_account->trading_enabled = $account["trading_enabled"];
                 $saved_account->save();
             } catch (ModelNotFoundException $e) {
-                $saved_account = Account::create([
-                    'account_id' => $account["id"],
-                    'currency' => $account["currency"],
-                    'balance' => $account["balance"],
-                    'hold' => $account["hold"],
-                    'available' => $account["available"],
-                    'profile_id' => $account["profile_id"],
-                    'trading_enabled' => $account["trading_enabled"],
-                ]);
+                $saved_account = new Account($account);
             }
 
             $this->line($saved_account->currency . " account data saved.");

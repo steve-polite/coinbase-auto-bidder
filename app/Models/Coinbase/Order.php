@@ -5,19 +5,21 @@ namespace App\Models\Coinbase;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class AccountHold extends Model
+class Order extends Model
 {
     use HasFactory;
 
     public $timestamps = false;
 
-    protected $table = "accounts_holds";
+    protected $table = "orders";
 
     public $incrementing = false;
 
     protected $casts = [
         'created_at' => 'datetime',
-        'updated_at' => 'datetime',
+        'done_at' => 'datetime',
+        'post_only' => 'boolean',
+        'settled' => 'boolean'
     ];
 
     protected $guarded = [];
