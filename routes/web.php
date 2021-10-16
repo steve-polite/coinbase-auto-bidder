@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Coinbase\AccountsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +15,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/accounts');
+});
+
+Route::prefix('/accounts')->as('accounts.')->group(function () {
+    Route::get('/', [AccountsController::class, 'index'])->name('index');
 });
