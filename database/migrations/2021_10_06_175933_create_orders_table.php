@@ -15,6 +15,7 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->uuid('id');
+            $table->double('price', 20, 16)->nullable();
             $table->double('size', 20, 16)->nullable();
             $table->string('product_id', 25);
             $table->uuid('profile_id');
@@ -22,6 +23,7 @@ class CreateOrdersTable extends Migration
             $table->double('funds', 20, 16)->nullable();
             $table->double('specified_funds', 20, 16)->nullable();
             $table->string('type', 25);
+            $table->string('time_in_force', 5)->nullable();
             $table->boolean('post_only');
             $table->dateTime('created_at');
             $table->dateTime('done_at');
