@@ -63,6 +63,8 @@ class SaveAccountsCommand extends Command
                 $saved_account->save();
             } catch (ModelNotFoundException $e) {
                 $saved_account = new Account($account);
+                $saved_account->account_id = $account["id"];
+                $saved_account->save();
             }
 
             $this->line($saved_account->currency . " account data saved.");

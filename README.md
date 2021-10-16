@@ -21,7 +21,7 @@ COINBASE_PRO_API_KEY=
 COINBASE_PRO_API_PASSPHRASE=
 COINBASE_PRO_API_BASE_URL=
 ```  
-```COINBASE_PRO_API_BASE_URL=``` should be ```https://api-public.sandbox.pro.coinbase.com``` or ```https://api-public.sandbox.pro.coinbase.com```.
+```COINBASE_PRO_API_BASE_URL=``` should be ```https://api-public.sandbox.exchange.coinbase.com``` or ```https://api-public.exchange.coinbase.com```.
 
 Then run ```php artisan migrate``` in order to create MySql tables.
 
@@ -31,3 +31,7 @@ Then run ```php artisan migrate``` in order to create MySql tables.
 This command saves any Coinbase accounts not yet saved to the database and updates those already there.
 
 ```php artisan coinbase:accounts:save```  
+  
+  
+## References 
+Coinbase API documentation: [https://docs.cloud.coinbase.com/exchange/docs/welcome](https://docs.cloud.coinbase.com/exchange/docs/welcome)
