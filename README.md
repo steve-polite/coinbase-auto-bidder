@@ -27,10 +27,14 @@ Then run ```php artisan migrate``` in order to create MySql tables.
 
 ## Commands  
 
-#### Save users accounts
-This command saves any Coinbase accounts not yet saved to the database and updates those already there.
-
 ```php artisan coinbase:accounts:save```  
+
+```php artisan coinbase:currencies:save```   
+
+```php artisan coinbase:products:save```  
+
+```php artisan coinbase:orders:save```  
+
   
   
 ## References 
