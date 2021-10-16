@@ -14,13 +14,15 @@ class Orders
      */
     public function listOrders(array $orders_status): ?array
     {
-        $endpoint = '/orders?';
-
-        $oders_status_query = [];
-        foreach ($orders_status as $order_status) {
-            $oders_status_query[] = "status=" . $order_status;
+        $endpoint = '/orders';
+        if (count($orders_status) > 0) {
+            $endpoint .= '?';
+            $oders_status_query = [];
+            foreach ($orders_status as $order_status) {
+                $oders_status_query[] = "status=" . $order_status;
+            }
+            $endpoint .= implode("&", $oders_status_query);
         }
-        $endpoint .= implode("&", $oders_status_query);
 
         $response = Http::withHeaders($this->coinbaseHeaders($endpoint, '', 'GET'))
             ->get(config('coinbase.api.base_url') . $endpoint);
