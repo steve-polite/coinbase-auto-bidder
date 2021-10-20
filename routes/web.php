@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Coinbase\AccountsController;
+use App\Http\Controllers\Coinbase\HomepageController;
+use App\Http\Controllers\Coinbase\OrdersController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,10 +16,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return redirect('/accounts');
-});
+Route::get('/', [HomepageController::class, 'index'])->name('homepage.index');
 
 Route::prefix('/accounts')->as('accounts.')->group(function () {
     Route::get('/', [AccountsController::class, 'index'])->name('index');
+});
+
+Route::prefix('/orders')->as('orders.')->group(function () {
+    Route::get('/', [OrdersController::class, 'index'])->name('index');
 });
