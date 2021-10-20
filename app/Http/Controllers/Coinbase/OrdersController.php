@@ -10,7 +10,7 @@ class OrdersController extends Controller
     public function index(Request $request)
     {
         return view('coinbase.orders.index', [
-            'title' => __('coinbase.pages.orders.title'),
+            'title' => __('coinbase.orders.title'),
         ]);
     }
 }

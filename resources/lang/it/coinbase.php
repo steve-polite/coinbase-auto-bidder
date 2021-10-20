@@ -2,15 +2,26 @@
 
 return [
     'title' => 'Coinbase Auto Bidder',
-    'pages' => [
-        'homepage' => [
-            'title' => 'Home',
+    'date' => 'Data',
+    'show_all' => 'Vedi tutti',
+    'homepage' => [
+        'title' => 'Home',
+    ],
+    'accounts' => [
+        'title' => 'Account',
+    ],
+    'orders' => [
+        'title' => 'Ordini',
+        'last_orders' => 'Ultimi ordini',
+        'sides' => [
+            'title' => 'Tipo',
+            'buy' => 'Acquisto',
+            'sell' => 'Vendita'
         ],
-        'accounts' => [
-            'title' => 'Account',
+        'status' => [
+            'title' => 'Stato',
+            'filled' => 'Eseguito',
+            'canceled' => 'Cancellato'
         ],
-        'orders' => [
-            'title' => 'Ordini',
-        ]
     ]
 ];

@@ -10,7 +10,7 @@ class HomepageController extends Controller
 {
     public function index(Request $request)
     {
-        $last_orders = Order::orderBy('created_at', 'desc')->limit(5);
+        $last_orders = Order::orderBy('created_at', 'desc')->limit(5)->get();
 
         return view('coinbase.homepage.index', [
             'title' => 'Homepage',

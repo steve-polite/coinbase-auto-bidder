@@ -7,10 +7,10 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{ route('accounts.index') }}">{{ __('coinbase.pages.accounts.title') }}</a>
+                    <a class="nav-link active" aria-current="page" href="{{ route('accounts.index') }}">{{ __('coinbase.accounts.title') }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{ route('orders.index') }}">{{ __('coinbase.pages.orders.title') }}</a>
+                    <a class="nav-link active" aria-current="page" href="{{ route('orders.index') }}">{{ __('coinbase.orders.title') }}</a>
                 </li>
             </ul>
         </div>

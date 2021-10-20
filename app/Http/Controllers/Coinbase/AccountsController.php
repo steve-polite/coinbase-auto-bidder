@@ -13,7 +13,7 @@ class AccountsController extends Controller
         $accounts = Account::select(['account_id', 'currency', 'balance'])->get();
 
         return view('coinbase.accounts.index', [
-            'title' => __('coinbase.pages.accounts.title'),
+            'title' => __('coinbase.accounts.title'),
             'accounts' => $accounts
         ]);
     }
