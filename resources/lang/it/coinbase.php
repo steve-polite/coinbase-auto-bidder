@@ -13,6 +13,7 @@ return [
     'orders' => [
         'title' => 'Ordini',
         'last_orders' => 'Ultimi ordini',
+        'product' => 'Prodotto',
         'sides' => [
             'title' => 'Tipo',
             'buy' => 'Acquisto',

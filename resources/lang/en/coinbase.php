@@ -13,6 +13,7 @@ return [
     'orders' => [
         'title' => 'Orders',
         'last_orders' => 'Last orders',
+        'product' => 'Product',
         'sides' => [
             'title' => 'Side',
             'buy' => 'Buy',

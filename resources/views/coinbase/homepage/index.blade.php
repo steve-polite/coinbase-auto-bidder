@@ -20,6 +20,7 @@
                     <thead>
                         <tr>
                             <th>{{ __('coinbase.date') }}</th>
+                            <th>{{ __('coinbase.orders.product') }}</th>
                             <th>{{ __('coinbase.orders.sides.title') }}</th>
                             <th>{{ __('coinbase.orders.status.title') }}</th>
                         </tr>
@@ -29,6 +30,9 @@
                         <tr>
                             <td>
                                 {{ $last_order->created_at->toDatetimeString() }}
+                            </td>
+                            <td>
+                                <strong>{{ $last_order->product_id }}</strong>
                             </td>
                             <td>
                                 <strong>{{ __('coinbase.orders.sides.'.$last_order->side) }}</strong>
