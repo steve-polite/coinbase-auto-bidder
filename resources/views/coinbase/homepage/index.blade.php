@@ -29,7 +29,11 @@
                         @foreach($last_orders as $last_order)
                         <tr>
                             <td>
-                                {{ $last_order->created_at->toDatetimeString() }}
+                                {{
+                                    $last_order->created_at
+                                        ->setTimezone(config('app.display_timezone'))
+                                        ->format(config('app.datetime_format'))
+                                }}
                             </td>
                             <td>
                                 <strong>{{ $last_order->product_id }}</strong>
