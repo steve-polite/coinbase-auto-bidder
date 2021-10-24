@@ -5,6 +5,10 @@ return [
     'date' => 'Date',
     'show_all' => 'Show all',
     'save' => 'Save',
+    'wallet_value' => 'Wallet value',
+    'deposits' => 'Depositis',
+    'withdrawals' => 'Withdrawals',
+    'fees' => 'Fees',
     'homepage' => [
         'title' => 'Home',
     ],
