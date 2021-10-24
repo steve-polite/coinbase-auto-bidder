@@ -4,6 +4,7 @@ return [
     'title' => 'Coinbase Auto Bidder',
     'date' => 'Date',
     'show_all' => 'Show all',
+    'save' => 'Save',
     'homepage' => [
         'title' => 'Home',
     ],
@@ -23,6 +24,16 @@ return [
             'title' => 'Status',
             'filled' => 'Filled',
             'canceled' => 'Cenceled'
+        ],
+    ],
+    'settings' => [
+        'title' => 'Settings',
+        'language' => 'Language',
+        'default_datetime_format' => 'Default date format',
+        'display_timezone' => 'Date\'s timezone',
+        'languages_list' => [
+            'en' => 'English',
+            'it' => 'Italian',
         ],
     ]
 ];

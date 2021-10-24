@@ -3,7 +3,6 @@
 namespace App\Http\Middleware;
 
 use App\Models\Settings as ModelSettings;
-use Carbon\Carbon;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;

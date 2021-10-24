@@ -14,5 +14,10 @@
                 </li>
             </ul>
         </div>
+        <div class="d-flex">
+            <a href="{{ route('settings.index') }}" class="link-dark">
+                <i class="bi-gear-fill" style="font-size: 1.5em;"></i>
+            </a>
+        </div>
     </div>
 </nav>

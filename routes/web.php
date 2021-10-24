@@ -3,6 +3,7 @@
 use App\Http\Controllers\Coinbase\AccountsController;
 use App\Http\Controllers\Coinbase\HomepageController;
 use App\Http\Controllers\Coinbase\OrdersController;
+use App\Http\Controllers\SettingsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,4 +25,8 @@ Route::prefix('/accounts')->as('accounts.')->group(function () {
 
 Route::prefix('/orders')->as('orders.')->group(function () {
     Route::get('/', [OrdersController::class, 'index'])->name('index');
+});
+
+Route::prefix('settings')->as('settings.')->group(function () {
+    Route::match(['get', 'post'], '/', [SettingsController::class, 'index'])->name('index');
 });

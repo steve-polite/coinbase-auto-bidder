@@ -1,4 +1,4 @@
-@extends('coinbase.layout.index')
+@extends('layout.index')
 
 @section('content')
     <div class="container">
