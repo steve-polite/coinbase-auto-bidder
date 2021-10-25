@@ -25,5 +25,9 @@ return [
             'code' => 'USD',
             'symbol' => '$',
         ],
+        'GBP' => [
+            'code' => 'GBP',
+            'symbol' => '£',
+        ],
     ],
 ];

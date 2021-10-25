@@ -1,4 +1,4 @@
-<div class="card" style="width: 18rem;">
+<div class="card">
     <div class="card-body">
         @if(isset($card_title))
         <h5 class="card-title">{{ $card_title ?? '' }}</h5>

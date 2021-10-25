@@ -43,6 +43,7 @@ return [
         'currencies_list' => [
             'EUR' => 'Euro',
             'USD' => 'US Dollar',
+            'GBP' => 'English Pound',
         ]
     ]
 ];

@@ -10,28 +10,28 @@
 
         {{-- Recaps --}}
         <div class="row mt-5">
-            <div class="col col-xs-3">
+            <div class="col-3">
                 @include('layout.components.info-card', [
                     'card_title' => __('coinbase.wallet_value'),
                     'card_text' => "<strong>Note:</strong> this is an example value",
                     'card_value' => "0€"
                 ])
             </div>
-            <div class="col col-xs-3">
+            <div class="col-3">
                 @include('layout.components.info-card', [
                     'card_title' => __('coinbase.deposits'),
                     'card_text' => "<strong>Note:</strong> this is an example value",
                     'card_value' => $total_transfers . "€"
                 ])
             </div>
-            <div class="col col-xs-3">
+            <div class="col-3">
                 @include('layout.components.info-card', [
                     'card_title' => __('coinbase.withdrawals'),
                     'card_text' => "<strong>Note:</strong> this is an example value",
                     'card_value' => $total_withdrawals . "€"
                 ])
             </div>
-            <div class="col col-xs-3">
+            <div class="col-3">
                 @include('layout.components.info-card', [
                     'card_title' => __('coinbase.fees'),
                     'card_text' => "<strong>Note:</strong> this is an example value",
