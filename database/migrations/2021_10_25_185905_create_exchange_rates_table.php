@@ -20,6 +20,8 @@ class CreateExchangeRatesTable extends Migration
             $table->decimal('rate', 22, 11);
             $table->dateTime('rate_datetime')->index();
             $table->date('rate_date')->index();
+
+            $table->unique(['base', 'symbol']);
         });
     }
 

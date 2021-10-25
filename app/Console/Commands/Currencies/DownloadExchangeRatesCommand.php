@@ -66,13 +66,11 @@ class DownloadExchangeRatesCommand extends Command
             ->get();
 
         foreach ($fiat_currencies_rates as $fiat_currency => $fiat_rate) {
-            ExchangeRate::create([
-                'base' => $currency,
-                'symbol' => $fiat_currency,
-                'rate' => $fiat_rate,
-                'rate_datetime' => Carbon::now()->toDateTimeString(),
-                'rate_date' => Carbon::now()->toDateString(),
-            ]);
+            $exr = ExchangeRate::firstOrNew(['symbol' => $fiat_currency, 'base' => $currency]);
+            $exr->rate = $fiat_rate;
+            $exr->rate_datetime = Carbon::now()->toDateTimeString();
+            $exr->rate_date = Carbon::now()->toDateString();
+            $exr->save();
         }
 
         $crypto_currencies_rates =
@@ -85,13 +83,11 @@ class DownloadExchangeRatesCommand extends Command
 
         // dd($crypto_currencies_rates);
         foreach ($crypto_currencies_rates as $crypto_currency => $crypto_rate) {
-            ExchangeRate::create([
-                'base' => $currency,
-                'symbol' => $crypto_currency,
-                'rate' => $crypto_currency == "BTC" ? $crypto_rate : 1 / $crypto_rate,
-                'rate_datetime' => Carbon::now()->toDateTimeString(),
-                'rate_date' => Carbon::now()->toDateString(),
-            ]);
+            $exr = ExchangeRate::firstOrNew(['symbol' => $crypto_currency, 'base' => $currency]);
+            $exr->rate = $crypto_currency == "BTC" ? $crypto_rate : 1 / $crypto_rate;
+            $exr->rate_datetime = Carbon::now()->toDateTimeString();
+            $exr->rate_date = Carbon::now()->toDateString();
+            $exr->save();
         }
     }
 }
