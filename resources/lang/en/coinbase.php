@@ -6,7 +6,7 @@ return [
     'show_all' => 'Show all',
     'save' => 'Save',
     'wallet_value' => 'Wallet value',
-    'deposits' => 'Depositis',
+    'deposits' => 'Deposits',
     'withdrawals' => 'Withdrawals',
     'fees' => 'Fees',
     'homepage' => [
@@ -35,9 +35,14 @@ return [
         'language' => 'Language',
         'default_datetime_format' => 'Default date format',
         'display_timezone' => 'Date\'s timezone',
+        'main_currency' => 'Main currency',
         'languages_list' => [
             'en' => 'English',
             'it' => 'Italian',
         ],
+        'currencies_list' => [
+            'EUR' => 'Euro',
+            'USD' => 'US Dollar',
+        ]
     ]
 ];

@@ -12,8 +12,17 @@
                 <form method="post">
                     @csrf
 
+                    @if(isset($settings_list["MAIN_CURRENCY"]))
+                    <label for="main-currency-input" class="form-label">{{ __('coinbase.settings.main_currency') }}</label>
+                    <select name="main-currency" id="main-currency-input" class="form-control">
+                        @foreach ($currencies as $currency)
+                        <option @if(isset($current_settings["MAIN_CURRENCY"]) && $currency['code'] == $current_settings["MAIN_CURRENCY"]->value ?? false) selected @endif value="{{ $currency['code'] }}">{{ __('coinbase.settings.currencies_list.'.$currency['code']) }}</option>
+                        @endforeach
+                    </select>
+                    @endif
+
                     @if(isset($settings_list["LANGUAGE"]))
-                    <label for="language-input" class="form-label">{{ __('coinbase.settings.language') }}</label>
+                    <label for="language-input" class="form-label mt-4">{{ __('coinbase.settings.language') }}</label>
                     <select name="language" id="language-input" class="form-control">
                         @foreach ($allowed_languages as $language)
                         <option @if(isset($current_settings["LANGUAGE"]) && $language == $current_settings["LANGUAGE"]->value ?? false) selected @endif value="{{ $language }}">{{ __('coinbase.settings.languages_list.'.$language) }}</option>

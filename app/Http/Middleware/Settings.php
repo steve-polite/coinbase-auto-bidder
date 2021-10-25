@@ -9,8 +9,6 @@ use Illuminate\Support\Facades\App;
 
 class Settings
 {
-    const ALLOWED_LANGUAGES = ["en", "it"];
-
     /**
      * Handle an incoming request.
      *
@@ -26,7 +24,7 @@ class Settings
 
         if (
             $settings->has('LANGUAGE')
-            && in_array($settings['LANGUAGE']->value, self::ALLOWED_LANGUAGES)
+            && in_array($settings['LANGUAGE']->value, config('settings.allowed_languages'))
         ) {
             App::setLocale($settings['LANGUAGE']->value);
         }

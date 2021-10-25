@@ -16,8 +16,19 @@ class SettingsController extends Controller
         $current_settings = Settings::all()->keyBy('key');
 
         if ($request->method() == "POST") {
+            if (isset($request["main-currency"])) {
+                if (Settings::where('key', 'MAIN_CURRENCY')->exists()) {
+                    DB::statement('UPDATE settings SET `value` = ? WHERE `key` = ?', [$request["main-currency"], 'MAIN_CURRENCY']);
+                } else {
+                    Settings::create([
+                        'key' => 'MAIN_CURRENCY',
+                        'value' => $request["main-currency"]
+                    ]);
+                }
+            }
+
             if (isset($request["language"])) {
-                if (Settings::whereKey('LANGUAGE')->exists()) {
+                if (Settings::where('key', 'LANGUAGE')->exists()) {
                     DB::statement('UPDATE settings SET `value` = ? WHERE `key` = ?', [$request["language"], 'LANGUAGE']);
                 } else {
                     Settings::create([
@@ -28,7 +39,7 @@ class SettingsController extends Controller
             }
 
             if (isset($request["default-datetime-format"])) {
-                if (Settings::whereKey('DEFAULT_DATETIME_FORMAT')->exists()) {
+                if (Settings::where('key', 'DEFAULT_DATETIME_FORMAT')->exists()) {
                     DB::statement('UPDATE settings SET `value` = ? WHERE `key` = ?', [$request["default-datetime-format"], 'DEFAULT_DATETIME_FORMAT']);
                 } else {
                     Settings::create([
@@ -39,7 +50,7 @@ class SettingsController extends Controller
             }
 
             if (isset($request["display-timezone"])) {
-                if (Settings::whereKey('DISPLAY_TIMEZONE')->exists()) {
+                if (Settings::where('key', 'DISPLAY_TIMEZONE')->exists()) {
                     DB::statement('UPDATE settings SET `value` = ? WHERE `key` = ?', [$request["display-timezone"], 'DISPLAY_TIMEZONE']);
                 } else {
                     Settings::create([
@@ -51,12 +62,12 @@ class SettingsController extends Controller
 
             return redirect()->to(route('settings.index'));
         }
-
         return view('settings.index', [
             'title' => __('coinbase.settings.title'),
             'settings_list' => $settings_list,
             'current_settings' => $current_settings,
-            'allowed_languages' => MiddlewareSettings::ALLOWED_LANGUAGES,
+            'allowed_languages' => config('settings.allowed_languages'),
+            'currencies' => config('settings.currencies'),
             'timezones_list' => config('timezones.timezones_list'),
         ]);
     }

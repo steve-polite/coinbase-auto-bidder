@@ -2,6 +2,9 @@
 
 return [
     'settings_list' => [
+        'MAIN_CURRENCY' => [
+            'default' => 'EUR'
+        ],
         'LANGUAGE' => [
             'default' => 'en',
         ],
@@ -11,5 +14,16 @@ return [
         'DISPLAY_TIMEZONE' => [
             'default' => 'utc',
         ]
+    ],
+    'allowed_languages' => ['en', 'it'],
+    'currencies' => [
+        'EUR' => [
+            'code' => 'EUR',
+            'symbol' => '€',
+        ],
+        'USD' => [
+            'code' => 'USD',
+            'symbol' => '$',
+        ],
     ],
 ];
