@@ -15,8 +15,8 @@
                     @if(isset($settings_list["MAIN_CURRENCY"]))
                     <label for="main-currency-input" class="form-label">{{ __('coinbase.settings.main_currency') }}</label>
                     <select name="main-currency" id="main-currency-input" class="form-control">
-                        @foreach ($allowed_main_currencies as $currency)
-                        <option @if(isset($current_settings["MAIN_CURRENCY"]) && $currency == $current_settings["MAIN_CURRENCY"]->value ?? false) selected @endif value="{{ $currency }}">{{ __('coinbase.settings.currencies_list.'.$currency) }}</option>
+                        @foreach ($currencies as $currency)
+                        <option @if(isset($current_settings["MAIN_CURRENCY"]) && $currency['code'] == $current_settings["MAIN_CURRENCY"]->value ?? false) selected @endif value="{{ $currency['code'] }}">{{ __('coinbase.settings.currencies_list.'.$currency['code']) }}</option>
                         @endforeach
                     </select>
                     @endif

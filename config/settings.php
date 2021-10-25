@@ -16,5 +16,14 @@ return [
         ]
     ],
     'allowed_languages' => ['en', 'it'],
-    'allowed_main_currencies' => ['EUR', 'USD'],
+    'currencies' => [
+        'EUR' => [
+            'code' => 'EUR',
+            'symbol' => '€',
+        ],
+        'USD' => [
+            'code' => 'USD',
+            'symbol' => '$',
+        ],
+    ],
 ];
