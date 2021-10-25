@@ -16,6 +16,17 @@ class SettingsController extends Controller
         $current_settings = Settings::all()->keyBy('key');
 
         if ($request->method() == "POST") {
+            if (isset($request["main-currency"])) {
+                if (Settings::whereKey('MAIN_CURRENCY')->exists()) {
+                    DB::statement('UPDATE settings SET `value` = ? WHERE `key` = ?', [$request["main-currency"], 'MAIN_CURRENCY']);
+                } else {
+                    Settings::create([
+                        'key' => 'MAIN_CURRENCY',
+                        'value' => $request["main-currency"]
+                    ]);
+                }
+            }
+
             if (isset($request["language"])) {
                 if (Settings::whereKey('LANGUAGE')->exists()) {
                     DB::statement('UPDATE settings SET `value` = ? WHERE `key` = ?', [$request["language"], 'LANGUAGE']);
@@ -56,7 +67,8 @@ class SettingsController extends Controller
             'title' => __('coinbase.settings.title'),
             'settings_list' => $settings_list,
             'current_settings' => $current_settings,
-            'allowed_languages' => MiddlewareSettings::ALLOWED_LANGUAGES,
+            'allowed_languages' => config('settings.allowed_languages'),
+            'allowed_main_currencies' => config('settings.allowed_main_currencies'),
             'timezones_list' => config('timezones.timezones_list'),
         ]);
     }

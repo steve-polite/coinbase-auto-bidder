@@ -35,9 +35,14 @@ return [
         'language' => 'Lingua',
         'default_datetime_format' => 'Formato date da visualizzare',
         'display_timezone' => 'Fuso orario date da visualizzare',
+        'main_currency' => 'Valuta principale',
         'languages_list' => [
             'en' => 'Inglese',
             'it' => 'Italiano',
         ],
+        'currencies_list' => [
+            'EUR' => 'Euro',
+            'USD' => 'Dollaro statunitense',
+        ]
     ]
 ];

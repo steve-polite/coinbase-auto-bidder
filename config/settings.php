@@ -2,6 +2,9 @@
 
 return [
     'settings_list' => [
+        'MAIN_CURRENCY' => [
+            'default' => 'EUR'
+        ],
         'LANGUAGE' => [
             'default' => 'en',
         ],
@@ -12,4 +15,6 @@ return [
             'default' => 'utc',
         ]
     ],
+    'allowed_languages' => ['en', 'it'],
+    'allowed_main_currencies' => ['EUR', 'USD'],
 ];

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Coinbase;
 
+use AmrShawky\LaravelCurrency\Facade\Currency;
 use App\Http\Controllers\Controller;
 use App\Models\Coinbase\AccountMovement;
 use App\Models\Coinbase\Order;
