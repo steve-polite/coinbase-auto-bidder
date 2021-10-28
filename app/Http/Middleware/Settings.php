@@ -37,6 +37,15 @@ class Settings
             config(['app.display_timezone' => $settings['DISPLAY_TIMEZONE']->value]);
         }
 
+        if (
+            $settings->has('MAIN_CURRENCY')
+            && array_key_exists(strtoupper($settings['MAIN_CURRENCY']->value), config('settings.currencies'))
+        ) {
+            $main_currency_data = config('settings.currencies.' . strtoupper($settings['MAIN_CURRENCY']->value));
+            config(['app.main_currency' => $main_currency_data['code']]);
+            config(['app.main_currency_symbol' => $main_currency_data['symbol']]);
+        }
+
         return $next($request);
     }
 }

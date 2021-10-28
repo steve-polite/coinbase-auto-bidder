@@ -13,8 +13,7 @@
             <div class="col-3">
                 @include('layout.components.info-card', [
                     'card_title' => __('coinbase.wallet_value'),
-                    'card_text' => "<strong>Note:</strong> this is an example value",
-                    'card_value' => "0€"
+                    'card_value' => $total_wallet_value . config('app.main_currency_symbol')
                 ])
             </div>
             <div class="col-3">
@@ -34,8 +33,7 @@
             <div class="col-3">
                 @include('layout.components.info-card', [
                     'card_title' => __('coinbase.fees'),
-                    'card_text' => "<strong>Note:</strong> this is an example value",
-                    'card_value' => $total_fees . "€"
+                    'card_value' => $total_fees . config('app.main_currency_symbol')
                 ])
             </div>
         </div>
